@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -22,12 +21,21 @@
       padding: 30px;
       text-align: center;
       max-width: 400px;
+      width: 100%;
     }
     h1 {
       color: #ff5722;
     }
     p {
       margin: 15px 0;
+    }
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 16px;
     }
     button {
       background: #ff5722;
@@ -37,6 +45,7 @@
       border-radius: 8px;
       font-size: 16px;
       cursor: pointer;
+      width: 100%;
     }
     button:hover {
       background: #e64a19;
@@ -51,13 +60,25 @@
 <body>
   <div class="container">
     <h1>限时优惠券</h1>
-    <p>领取RM19健康管理专属优惠券！</p>
+    <p>领取50元健康管理专属优惠券！</p>
+    <input type="text" id="name" placeholder="请输入您的姓名">
+    <input type="tel" id="phone" placeholder="请输入您的手机号">
     <button onclick="claimCoupon()">立即领取</button>
     <div class="success" id="success">领取成功！请在7天内使用。</div>
   </div>
 
   <script>
     function claimCoupon() {
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      if (!name || !phone) {
+        alert('请填写姓名和手机号');
+        return;
+      }
+      if (!/^1[3-9]\d{9}$/.test(phone)) {
+        alert('请输入有效的手机号');
+        return;
+      }
       document.getElementById('success').style.display = 'block';
     }
   </script>
